@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace ContosoGamingAPI.BL
 {
-    interface IOperation
+   public interface IOperation
     {
+        public int Stop { get; set; }
         void CreateLandmarkNode(string node);
         public int CalculateDistance(string nodeTraversal);
     }
