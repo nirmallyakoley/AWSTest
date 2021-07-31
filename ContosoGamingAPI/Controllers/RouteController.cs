@@ -9,6 +9,7 @@ using ContosoGamingAPI.BL;
 using ContosoGamingAPI.PoCo;
 using Microsoft.AspNetCore.Mvc;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ContosoGamingAPI.Controllers
@@ -24,7 +25,7 @@ namespace ContosoGamingAPI.Controllers
         }
         // GET: api/<RouteController>
         [HttpGet("{nodes}/{route}")]
-        public Result Get(string nodes, string route)
+        public IActionResult Get(string nodes, string route)
         {
             string[] nodeArr = nodes.Trim().Split(',');
 
@@ -39,8 +40,7 @@ namespace ContosoGamingAPI.Controllers
                 Distance = distance < 0 ? "Path not found" : distance.ToString(),
                 Stop = objLandMarkOperation.Stop.ToString()
             };
-            return result;
-
+            return Ok(result);
         }
 
 

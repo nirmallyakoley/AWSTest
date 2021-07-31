@@ -53,7 +53,15 @@ namespace ContosoGamingAPI.BL
                 string[] nodelist = Helper.Helper.GetIndividualLandMarkName(nodeTraverse);
                 for (int i = 0; i < nodelist.Length - 1; i++)
                 {
-                    _currentLadMark = dicLandmarks[nodelist[i]];
+                    try
+                    {
+                        _currentLadMark = dicLandmarks[nodelist[i]];
+                    }
+                    catch
+                    {
+                        _distance = -1;
+                        break;
+                    }
                     if (i < nodelist.Length)
                     {
                         LandMark objLandMark = _currentLadMark.ConnectedLandMark.Find(landmark => landmark.Name == nodelist[i + 1]);

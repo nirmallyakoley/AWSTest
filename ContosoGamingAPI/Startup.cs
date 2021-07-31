@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContosoGamingAPI.BL;
+using ContosoGamingAPI.Error;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,9 +39,14 @@ namespace ContosoGamingAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureExceptionHandler();
 
             app.UseHttpsRedirection();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V2");
+            });
             app.UseRouting();
 
             app.UseAuthorization();
@@ -49,10 +55,8 @@ namespace ContosoGamingAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API ");
-            });
+           
+           
         }
     }
 }
